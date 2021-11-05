@@ -1,0 +1,48 @@
+CREATE TABLE form(
+form_id numeric (5, 0) NOT NULL,
+score numeric (3, 0) NOT NULL,
+form_date date NOT NULL,
+school_id int,
+respondant_id numeric(5,0),
+q1 bit NOT NULL,
+q2 bit NOT NULL,
+q3 bit NOT NULL,
+q4 bit NOT NULL,
+q5 bit NOT NULL,
+q6 bit NOT NULL,
+q7 bit NOT NULL,
+q8 bit NOT NULL,
+q9 bit NOT NULL,
+q10 bit NOT NULL,
+q11 bit NOT NULL,
+q12 bit NOT NULL,
+q13 bit NOT NULL,
+PRIMARY KEY (form_id),
+);
+
+CREATE TABLE respondent(
+respondent_id numeric (5, 0) NOT NULL,
+name varchar(20) NOT NULL,
+email_address varchar(225) NOT NULL,
+role varchar(225) NOT NULL
+)
+
+CREATE TABLE zipcode_stats(
+white decimal(2,2),
+black decimal(2,2),
+asian decimal(2,2),
+american-indian decimal(2,2),
+native-hawaiian decimal(2,2),
+other decimal(2,2),
+LGBTQ decimal(2,2),
+FOREIGN KEY (zip_code) references school(zip_code)
+)
+CREATE TABLE schools(
+school_id numeric(6,0) NOT NULL,
+name varchar(20) NOT NULL,
+state varchar(15) NOT NULL,
+zip_code numeric(20) NOT NULL,
+county varchar(20),
+PRIMARY KEY (school_id),
+FOREIGN KEY (zip_code) REFERENCES zip_code_stats(zip_code)
+)
